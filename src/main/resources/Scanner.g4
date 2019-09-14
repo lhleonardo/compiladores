@@ -4,9 +4,6 @@ lexer grammar Scanner;
 	package br.ufla.compiladores.scanner;
 }
 
-// declaração de simbolos que podem existir na linguagem
-LETTER: ('a' .. 'z') | ('A'..'Z');
-DIGIT: ('0'..'9');
 
 MODIFIERS: 'public' | 'private' | 'protected' | 'static' | 'abstract';
 
@@ -56,7 +53,11 @@ RELATIONAL_OPERATOR: '>' | '>=' | '<' | '<=' | '=' | '!' | '==';
 ARITHMETIC_OPERATOR: '+' | '-' | '*' | '++' | '--' | '+='| '-=';
 
 // aceita todos os tipos de nomes de variáveis que começam obrigatoriamente com uma letra ou underscore
-IDENTIFICADOR: (LETTER | '_' | '$') (LETTER | DIGIT | '_' | '$')*;
+IDENTIFIER: (LETTER | '_' | '$') (LETTER | DIGIT | '_' | '$')*;
+
+// declaração de simbolos que podem existir na linguagem
+LETTER: ('a' .. 'z') | ('A'..'Z');
+DIGIT: ('0'..'9');
 
 // ignora novas linhas, espaços e tabulações
 NEW_LINE: ('\r' ? '\n') -> skip;

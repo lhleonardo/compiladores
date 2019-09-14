@@ -1,0 +1,44 @@
+public class Teste {
+	private String nome;
+			
+	// int variavelDoComentario;
+	private int idade;
+	
+	public void metodo(String argumento1, int argumento2) {
+		int x = 10;
+	}
+	
+	public static void main(String[] args) {
+		int[] numeros = new int[];
+		String nomezin = "Leonardo";
+		
+		if (nomezin == "Matheus") {
+			nomezin = "Leonardo não é matheus";
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
