@@ -9,6 +9,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.Token;
 
 import br.ufla.compiladores.scanner.Scanner;
+import br.ufla.compiladores.scanner.table.LexicalCorrector;
 import br.ufla.compiladores.scanner.table.SymbolTable;
 
 public class Main {
@@ -16,7 +17,11 @@ public class Main {
 	public static void main(String[] args) throws IOException, URISyntaxException {
 		Scanner scanner = new Scanner(CharStreams.fromPath(Path.of(Main.class.getResource("Arquivo.jminus").toURI())));
 		List<? extends Token> tokens = scanner.getAllTokens();
-
+		for (Token token : tokens) {
+			if (token.getType() == scanner.NOT_IDENTIFIER || token.getType() == scanner.IDENTIFIER) {
+				LexicalCorrector.panicMode(token);
+			}
+		}
 		SymbolTable table = new SymbolTable();
 		table.extractIdentifiers(tokens);
 		System.out.println(table);

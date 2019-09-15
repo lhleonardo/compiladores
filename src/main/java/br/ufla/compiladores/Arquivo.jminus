@@ -1,5 +1,5 @@
 public class Teste {
-	private String nome;
+	private String 1nome;
 			
 	// int variavelDoComentario;
 	private int idade;
@@ -9,7 +9,7 @@ public class Teste {
 	}
 	
 	public static void main(String[] args) {
-		int[] numeros = new int[];
+		innt[] numeros = new int[];
 		String nomezin = "Leonardo";
 		
 		if (nomezin == "Matheus") {

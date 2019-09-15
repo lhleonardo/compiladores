@@ -55,6 +55,7 @@ ARITHMETIC_OPERATOR: '+' | '-' | '*' | '++' | '--' | '+='| '-=';
 // aceita todos os tipos de nomes de variáveis que começam obrigatoriamente com uma letra ou underscore
 IDENTIFIER: (LETTER | '_' | '$') (LETTER | DIGIT | '_' | '$')*;
 
+
 // declaração de simbolos que podem existir na linguagem
 LETTER: ('a' .. 'z') | ('A'..'Z');
 DIGIT: ('0'..'9');
@@ -65,3 +66,5 @@ WHITE_SKEEP: [ \t]+ -> skip;
 
 // ignora comentários
 COMMENTS: '//' ~[\r\n]* -> skip;
+
+NOT_IDENTIFIER : (LETTER | DIGIT | '_' | '$')+ ;
