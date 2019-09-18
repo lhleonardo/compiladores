@@ -18,7 +18,7 @@ public class Main {
 		Scanner scanner = new Scanner(CharStreams.fromPath(Path.of(Main.class.getResource("Arquivo.jminus").toURI())));
 		List<? extends Token> tokens = scanner.getAllTokens();
 		for (Token token : tokens) {
-			if (token.getType() == scanner.NOT_IDENTIFIER || token.getType() == scanner.IDENTIFIER) {
+			if (token.getType() == Scanner.NOT_IDENTIFIER) {
 				LexicalCorrector.panicMode(token);
 			}
 		}

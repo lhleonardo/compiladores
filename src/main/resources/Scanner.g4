@@ -4,15 +4,22 @@ lexer grammar Scanner;
 	package br.ufla.compiladores.scanner;
 }
 
+PUBLIC: 'public';
+PRIVATE: 'private';
+PROTECTED: 'protected';
+STATIC: 'static';
+ABSTRACT: 'abstract';
 
-MODIFIERS: 'public' | 'private' | 'protected' | 'static' | 'abstract';
+INT: 'int';
+CHAR: 'char';
+BOOLEAN: 'boolean';
 
-LITERAL_TYPES: 'int' | 'char' | 'boolean';
-
-INTEGER: '0' | ('1'..'9')(DIGIT)*;
+INT_LITERAL: '0' | ('1'..'9')(DIGIT)*;
 
 VOID: 'void';
-BOOLEAN_VALUE: 'true' | 'false';
+
+BOOLEAN_TRUE: 'true';
+BOOLEAN_FALSE: 'false';
 
 EXTENDS: 'extends';
 CLASS: 'class';
@@ -47,14 +54,26 @@ SEMICOLON: ',';
 DOT: '.';
 
 STRING: '"' (~('\\'|'"') )* '"';
-CHAR: '\'' (~('\\'|'"') ) '\'';
+CHAR_LITERAL: '\'' (~('\\'|'"') ) '\'';
 
-RELATIONAL_OPERATOR: '>' | '>=' | '<' | '<=' | '=' | '!' | '==';
-ARITHMETIC_OPERATOR: '+' | '-' | '*' | '++' | '--' | '+='| '-=';
+GREATER_EQUAL: '>=';
+GREATER_THAN: '>';
+LESS_EQUAL: '<=';
+LESS_THAN: '<';
+EQUAL: '==';
+ASSIGN: '=';
+NOT: '!';
+
+ADD: '+';
+SUB: '-';
+MULT: '*';
+INCREMENT: '++';
+DECREMENT: '--';
+PLUS: '+=';
+REMOVE: '-=';
 
 // aceita todos os tipos de nomes de variáveis que começam obrigatoriamente com uma letra ou underscore
 IDENTIFIER: (LETTER | '_' | '$') (LETTER | DIGIT | '_' | '$')*;
-
 
 // declaração de simbolos que podem existir na linguagem
 LETTER: ('a' .. 'z') | ('A'..'Z');
