@@ -54,7 +54,8 @@ public class SymbolTable {
 		while (iterator.hasNext()) {
 			current = iterator.next();
 
-			if (current.getType() == Scanner.IDENTIFIER || current.getType() == Scanner.LITERAL_TYPES) {
+			if (current.getType() == Scanner.IDENTIFIER || current.getType() == Scanner.INT
+					|| current.getType() == Scanner.CHAR || current.getType() == Scanner.BOOLEAN) {
 				Token type = current;
 
 				current = iterator.next();
