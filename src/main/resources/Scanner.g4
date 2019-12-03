@@ -1,9 +1,129 @@
-lexer grammar Scanner;
+grammar Scanner;
 
 @header {
 	package br.ufla.compiladores.scanner;
 }
 
+compilationUnit: packageDeclaration? 
+				 importDeclaration* 
+				 typeDeclaration* 
+				 EOF;
+				 
+packageDeclaration: PACKAGE qualifiedIdentifier;
+importDeclaration: IMPORT qualifiedIdentifier;
+typeDeclaration: type;
+
+qualifiedIdentifier: IDENTIFIER ('.' IDENTIFIER)*;
+
+modifiers: PUBLIC 
+			| PROTECTED 
+			| PRIVATE 
+			| STATIC 
+			| ABSTRACT;
+
+classDeclaration: CLASS IDENTIFIER (EXTENDS qualifiedIdentifier)? classBody;
+
+classBody: OPEN_BRACKETS (modifiers memberDeclaration)? CLOSE_BRACKETS; 
+
+memberDeclaration: 
+				IDENTIFIER formalParameters block // construtor
+				| (VOID | type) IDENTIFIER (block | END_STATEMENT) // método
+				| type variableDeclarators; // campo da classe
+
+block: OPEN_BRACES 
+			(blockStatement)? 
+	   CLOSE_BRACES;
+
+blockStatement: localVariableDeclarationStatement | statement;
+
+statement: 
+		block 
+		| IDENTIFIER TWO_POINTS statement  // dar nome a um bloco
+		| IF parExpression statement (ELSE statement)? // if e if/else
+		| RETURN expression? END_STATEMENT
+		| END_STATEMENT
+		| statementExpression END_STATEMENT;
+
+formalParameters: OPEN_PARENTHESIS(formalParameter(SEMICOLON formalParameter))?CLOSE_PARENTHESIS;
+
+formalParameter: type IDENTIFIER;
+
+parExpression: OPEN_PARENTHESIS expression CLOSE_PARENTHESIS;
+
+localVariableDeclarationStatement: type variableDeclarators;
+
+variableDeclarators: variableDeclarator (SEMICOLON variableDeclarator)*;
+
+variableDeclarator: IDENTIFIER (variableInitializer)?;
+
+variableInitializer: arrayInitializer | expression;
+
+arrayInitializer: OPEN_BRACES (variableInitializer (SEMICOLON variableInitializer)*)? CLOSE_BRACES;
+
+arguments: OPEN_PARENTHESIS(expression(SEMICOLON expression))? CLOSE_PARENTHESIS;
+
+type: referenceType | basicType;
+
+basicType: BOOLEAN | CHAR | INT;
+
+referenceType: basicType OPEN_BRACES CLOSE_BRACES (OPEN_BRACES CLOSE_BRACES)* | qualifiedIdentifier (OPEN_BRACES CLOSE_BRACES)*;
+
+statementExpression: expression;
+
+expression: assigmentExpression;
+
+assigmentExpression: conditionalAndExpression ((ASSIGN | PLUS) assigmentExpression)?;
+
+conditionalAndExpression: equalityExpression (AND equalityExpression)?; 
+
+equalityExpression: relationalExpression (EQUAL relationalExpression)*;
+
+relationalExpression: additiveExpression 
+				((GREATER_THAN | LESS_EQUAL) additiveExpression | INSTANCEOF referenceType)?;
+
+additiveExpression: multiplicativeExpression ((ADD | SUB) multiplicativeExpression)*;
+
+multiplicativeExpression: unaryExpression (MULT unaryExpression)*;
+
+unaryExpression: INCREMENT unaryExpression
+				| SUB unaryExpression
+				| simpleUnaryExpression;
+				
+simpleUnaryExpression: NOT unaryExpression
+					| OPEN_PARENTHESIS basicType CLOSE_PARENTHESIS unaryExpression
+					| OPEN_PARENTHESIS referenceType CLOSE_PARENTHESIS simpleUnaryExpression
+					| postfixExpression;
+
+postfixExpression: primary selector* DECREMENT*;
+
+selector: DOT qualifiedIdentifier arguments?
+		| OPEN_BRACKETS expression CLOSE_BRACKETS;
+		
+primary: parExpression
+		| THIS arguments?
+		| SUPER (arguments | (DOT IDENTIFIER arguments?))?
+		| literal
+		| NEW creator
+		| qualifiedIdentifier arguments?;
+
+creator: (basicType | qualifiedIdentifier)
+		(
+			arguments 
+			| OPEN_BRACKETS CLOSE_BRACKETS (OPEN_BRACKETS CLOSE_BRACKETS)* arrayInitializer?
+			| newArrayDeclarator  
+		);
+
+newArrayDeclarator: OPEN_BRACKETS expression CLOSE_BRACKETS 
+					(OPEN_BRACKETS expression CLOSE_BRACKETS)*
+					(OPEN_BRACKETS CLOSE_BRACKETS)*;
+					
+literal: INT
+		| CHAR
+		| STRING
+		| BOOLEAN_TRUE
+		| BOOLEAN_FALSE
+		| NULL;
+		
 PUBLIC: 'public';
 PRIVATE: 'private';
 PROTECTED: 'protected';
@@ -51,6 +171,7 @@ CLOSE_BRACKETS: ']';
 
 END_STATEMENT: ';';
 SEMICOLON: ',';
+TWO_POINTS: ':';
 DOT: '.';
 
 STRING: '"' (~('\\'|'"') )* '"';
@@ -61,6 +182,7 @@ GREATER_THAN: '>';
 LESS_EQUAL: '<=';
 LESS_THAN: '<';
 EQUAL: '==';
+AND: '&&';
 ASSIGN: '=';
 NOT: '!';
 
