@@ -1,13 +1,7 @@
 package br.ufla.compiladores.scanner.table;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-
-import org.antlr.v4.runtime.Token;
-
-import br.ufla.compiladores.scanner.Scanner;
 
 public class SymbolTable {
 	private Map<Address, Identifier> symbols;
@@ -47,42 +41,6 @@ public class SymbolTable {
 		return this.symbols.containsValue(identifier);
 	}
 
-	public void extractIdentifiers(List<? extends Token> tokens) {
-		Token current = null;
-		Iterator<? extends Token> iterator = tokens.iterator();
-
-		while (iterator.hasNext()) {
-			current = iterator.next();
-
-			if (current.getType() == Scanner.IDENTIFIER || current.getType() == Scanner.INT
-					|| current.getType() == Scanner.CHAR || current.getType() == Scanner.BOOLEAN) {
-				Token type = current;
-
-				current = iterator.next();
-
-				boolean isArray = false;
-
-				// Array
-				if (current.getType() == Scanner.OPEN_BRACKETS) {
-					// skip the next token because this will be a CLOSE_BRACKETS. Therefore this is
-					// not important
-					current = iterator.next();
-					current = iterator.next();
-					isArray = true;
-
-				}
-				// Single Object
-				if (current.getType() == Scanner.IDENTIFIER) {
-					Identifier identifier = new Identifier(current.getText(),
-							new IdentifierType(type.getText() + (isArray ? "[]" : "")));
-					identifier.setLocale(Location.of(current.getLine(), current.getCharPositionInLine()));
-
-					this.add(new Address(), identifier);
-				}
-			}
-		}
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -91,9 +49,8 @@ public class SymbolTable {
 
 		for (Address adress : symbols.keySet()) {
 			Identifier identifier = symbols.get(adress);
-			builder.append(String.format("%10d|%10d|%10d|%10s|%s%n", adress.getValor(),
-					identifier.getLocalizacao().getLinha(), identifier.getLocalizacao().getColuna(),
-					identifier.getTipo().toString(), identifier.getNome()));
+			builder.append(String.format("%10d|%10d|%10d|%s%n", adress.getValor(),
+					identifier.getLocalizacao().getLinha(), identifier.getLocalizacao().getColuna(), identifier.getNome()));
 		}
 
 		return builder.toString();

@@ -1,4 +1,4 @@
-// Generated from Scanner.g4 by ANTLR 4.7.2
+// Generated from Scanner.g4 by ANTLR 4.4
 
 	package br.ufla.compiladores.scanner;
 
@@ -13,7 +13,7 @@ import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class Scanner extends Lexer {
-	static { RuntimeMetaData.checkVersion("4.7.2", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.4", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -29,87 +29,31 @@ public class Scanner extends Lexer {
 		EQUAL=41, ASSIGN=42, NOT=43, ADD=44, SUB=45, MULT=46, INCREMENT=47, DECREMENT=48, 
 		PLUS=49, REMOVE=50, IDENTIFIER=51, LETTER=52, DIGIT=53, NEW_LINE=54, WHITE_SKEEP=55, 
 		COMMENTS=56, NOT_IDENTIFIER=57;
-	public static String[] channelNames = {
-		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
-	};
-
 	public static String[] modeNames = {
 		"DEFAULT_MODE"
 	};
 
-	private static String[] makeRuleNames() {
-		return new String[] {
-			"PUBLIC", "PRIVATE", "PROTECTED", "STATIC", "ABSTRACT", "INT", "CHAR", 
-			"BOOLEAN", "INT_LITERAL", "VOID", "BOOLEAN_TRUE", "BOOLEAN_FALSE", "EXTENDS", 
-			"CLASS", "IMPORT", "PACKAGE", "SUPER", "THIS", "NEW", "RETURN", "NULL", 
-			"IF", "ELSE", "WHILE", "INSTANCEOF", "OPEN_PARENTHESIS", "CLOSE_PARENTHESIS", 
-			"OPEN_BRACES", "CLOSE_BRACES", "OPEN_BRACKETS", "CLOSE_BRACKETS", "END_STATEMENT", 
-			"SEMICOLON", "DOT", "STRING", "CHAR_LITERAL", "GREATER_EQUAL", "GREATER_THAN", 
-			"LESS_EQUAL", "LESS_THAN", "EQUAL", "ASSIGN", "NOT", "ADD", "SUB", "MULT", 
-			"INCREMENT", "DECREMENT", "PLUS", "REMOVE", "IDENTIFIER", "LETTER", "DIGIT", 
-			"NEW_LINE", "WHITE_SKEEP", "COMMENTS", "NOT_IDENTIFIER"
-		};
-	}
-	public static final String[] ruleNames = makeRuleNames();
-
-	private static String[] makeLiteralNames() {
-		return new String[] {
-			null, "'public'", "'private'", "'protected'", "'static'", "'abstract'", 
-			"'int'", "'char'", "'boolean'", null, "'void'", "'true'", "'false'", 
-			"'extends'", "'class'", "'import'", "'package'", "'super'", "'this'", 
-			"'new'", "'return'", "'null'", "'if'", "'else'", "'while'", "'instanceof'", 
-			"'('", "')'", "'{'", "'}'", "'['", "']'", "';'", "','", "'.'", null, 
-			null, "'>='", "'>'", "'<='", "'<'", "'=='", "'='", "'!'", "'+'", "'-'", 
-			"'*'", "'++'", "'--'", "'+='", "'-='"
-		};
-	}
-	private static final String[] _LITERAL_NAMES = makeLiteralNames();
-	private static String[] makeSymbolicNames() {
-		return new String[] {
-			null, "PUBLIC", "PRIVATE", "PROTECTED", "STATIC", "ABSTRACT", "INT", 
-			"CHAR", "BOOLEAN", "INT_LITERAL", "VOID", "BOOLEAN_TRUE", "BOOLEAN_FALSE", 
-			"EXTENDS", "CLASS", "IMPORT", "PACKAGE", "SUPER", "THIS", "NEW", "RETURN", 
-			"NULL", "IF", "ELSE", "WHILE", "INSTANCEOF", "OPEN_PARENTHESIS", "CLOSE_PARENTHESIS", 
-			"OPEN_BRACES", "CLOSE_BRACES", "OPEN_BRACKETS", "CLOSE_BRACKETS", "END_STATEMENT", 
-			"SEMICOLON", "DOT", "STRING", "CHAR_LITERAL", "GREATER_EQUAL", "GREATER_THAN", 
-			"LESS_EQUAL", "LESS_THAN", "EQUAL", "ASSIGN", "NOT", "ADD", "SUB", "MULT", 
-			"INCREMENT", "DECREMENT", "PLUS", "REMOVE", "IDENTIFIER", "LETTER", "DIGIT", 
-			"NEW_LINE", "WHITE_SKEEP", "COMMENTS", "NOT_IDENTIFIER"
-		};
-	}
-	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
-	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
-
-	/**
-	 * @deprecated Use {@link #VOCABULARY} instead.
-	 */
-	@Deprecated
-	public static final String[] tokenNames;
-	static {
-		tokenNames = new String[_SYMBOLIC_NAMES.length];
-		for (int i = 0; i < tokenNames.length; i++) {
-			tokenNames[i] = VOCABULARY.getLiteralName(i);
-			if (tokenNames[i] == null) {
-				tokenNames[i] = VOCABULARY.getSymbolicName(i);
-			}
-
-			if (tokenNames[i] == null) {
-				tokenNames[i] = "<INVALID>";
-			}
-		}
-	}
-
-	@Override
-	@Deprecated
-	public String[] getTokenNames() {
-		return tokenNames;
-	}
-
-	@Override
-
-	public Vocabulary getVocabulary() {
-		return VOCABULARY;
-	}
+	public static final String[] tokenNames = {
+		"'\\u0000'", "'\\u0001'", "'\\u0002'", "'\\u0003'", "'\\u0004'", "'\\u0005'", 
+		"'\\u0006'", "'\\u0007'", "'\b'", "'\t'", "'\n'", "'\\u000B'", "'\f'", 
+		"'\r'", "'\\u000E'", "'\\u000F'", "'\\u0010'", "'\\u0011'", "'\\u0012'", 
+		"'\\u0013'", "'\\u0014'", "'\\u0015'", "'\\u0016'", "'\\u0017'", "'\\u0018'", 
+		"'\\u0019'", "'\\u001A'", "'\\u001B'", "'\\u001C'", "'\\u001D'", "'\\u001E'", 
+		"'\\u001F'", "' '", "'!'", "'\"'", "'#'", "'$'", "'%'", "'&'", "'''", 
+		"'('", "')'", "'*'", "'+'", "','", "'-'", "'.'", "'/'", "'0'", "'1'", 
+		"'2'", "'3'", "'4'", "'5'", "'6'", "'7'", "'8'", "'9'"
+	};
+	public static final String[] ruleNames = {
+		"PUBLIC", "PRIVATE", "PROTECTED", "STATIC", "ABSTRACT", "INT", "CHAR", 
+		"BOOLEAN", "INT_LITERAL", "VOID", "BOOLEAN_TRUE", "BOOLEAN_FALSE", "EXTENDS", 
+		"CLASS", "IMPORT", "PACKAGE", "SUPER", "THIS", "NEW", "RETURN", "NULL", 
+		"IF", "ELSE", "WHILE", "INSTANCEOF", "OPEN_PARENTHESIS", "CLOSE_PARENTHESIS", 
+		"OPEN_BRACES", "CLOSE_BRACES", "OPEN_BRACKETS", "CLOSE_BRACKETS", "END_STATEMENT", 
+		"SEMICOLON", "DOT", "STRING", "CHAR_LITERAL", "GREATER_EQUAL", "GREATER_THAN", 
+		"LESS_EQUAL", "LESS_THAN", "EQUAL", "ASSIGN", "NOT", "ADD", "SUB", "MULT", 
+		"INCREMENT", "DECREMENT", "PLUS", "REMOVE", "IDENTIFIER", "LETTER", "DIGIT", 
+		"NEW_LINE", "WHITE_SKEEP", "COMMENTS", "NOT_IDENTIFIER"
+	};
 
 
 	public Scanner(CharStream input) {
@@ -121,13 +65,13 @@ public class Scanner extends Lexer {
 	public String getGrammarFileName() { return "Scanner.g4"; }
 
 	@Override
+	public String[] getTokenNames() { return tokenNames; }
+
+	@Override
 	public String[] getRuleNames() { return ruleNames; }
 
 	@Override
 	public String getSerializedATN() { return _serializedATN; }
-
-	@Override
-	public String[] getChannelNames() { return channelNames; }
 
 	@Override
 	public String[] getModeNames() { return modeNames; }
@@ -136,7 +80,7 @@ public class Scanner extends Lexer {
 	public ATN getATN() { return _ATN; }
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2;\u018d\b\1\4\2\t"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2;\u018d\b\1\4\2\t"+
 		"\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -166,17 +110,17 @@ public class Scanner extends Lexer {
 		"\r\31\16\33\17\35\20\37\21!\22#\23%\24\'\25)\26+\27-\30/\31\61\32\63\33"+
 		"\65\34\67\359\36;\37= ?!A\"C#E$G%I&K\'M(O)Q*S+U,W-Y.[/]\60_\61a\62c\63"+
 		"e\64g\65i\66k\67m8o9q:s;\3\2\7\4\2$$^^\4\2&&aa\4\2C\\c|\4\2\13\13\"\""+
-		"\4\2\f\f\17\17\2\u0199\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2"+
-		"\2\13\3\2\2\2\2\r\3\2\2\2\2\17\3\2\2\2\2\21\3\2\2\2\2\23\3\2\2\2\2\25"+
-		"\3\2\2\2\2\27\3\2\2\2\2\31\3\2\2\2\2\33\3\2\2\2\2\35\3\2\2\2\2\37\3\2"+
-		"\2\2\2!\3\2\2\2\2#\3\2\2\2\2%\3\2\2\2\2\'\3\2\2\2\2)\3\2\2\2\2+\3\2\2"+
-		"\2\2-\3\2\2\2\2/\3\2\2\2\2\61\3\2\2\2\2\63\3\2\2\2\2\65\3\2\2\2\2\67\3"+
-		"\2\2\2\29\3\2\2\2\2;\3\2\2\2\2=\3\2\2\2\2?\3\2\2\2\2A\3\2\2\2\2C\3\2\2"+
-		"\2\2E\3\2\2\2\2G\3\2\2\2\2I\3\2\2\2\2K\3\2\2\2\2M\3\2\2\2\2O\3\2\2\2\2"+
-		"Q\3\2\2\2\2S\3\2\2\2\2U\3\2\2\2\2W\3\2\2\2\2Y\3\2\2\2\2[\3\2\2\2\2]\3"+
-		"\2\2\2\2_\3\2\2\2\2a\3\2\2\2\2c\3\2\2\2\2e\3\2\2\2\2g\3\2\2\2\2i\3\2\2"+
-		"\2\2k\3\2\2\2\2m\3\2\2\2\2o\3\2\2\2\2q\3\2\2\2\2s\3\2\2\2\3u\3\2\2\2\5"+
-		"|\3\2\2\2\7\u0084\3\2\2\2\t\u008e\3\2\2\2\13\u0095\3\2\2\2\r\u009e\3\2"+
+		"\4\2\f\f\17\17\u0199\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2\2"+
+		"\13\3\2\2\2\2\r\3\2\2\2\2\17\3\2\2\2\2\21\3\2\2\2\2\23\3\2\2\2\2\25\3"+
+		"\2\2\2\2\27\3\2\2\2\2\31\3\2\2\2\2\33\3\2\2\2\2\35\3\2\2\2\2\37\3\2\2"+
+		"\2\2!\3\2\2\2\2#\3\2\2\2\2%\3\2\2\2\2\'\3\2\2\2\2)\3\2\2\2\2+\3\2\2\2"+
+		"\2-\3\2\2\2\2/\3\2\2\2\2\61\3\2\2\2\2\63\3\2\2\2\2\65\3\2\2\2\2\67\3\2"+
+		"\2\2\29\3\2\2\2\2;\3\2\2\2\2=\3\2\2\2\2?\3\2\2\2\2A\3\2\2\2\2C\3\2\2\2"+
+		"\2E\3\2\2\2\2G\3\2\2\2\2I\3\2\2\2\2K\3\2\2\2\2M\3\2\2\2\2O\3\2\2\2\2Q"+
+		"\3\2\2\2\2S\3\2\2\2\2U\3\2\2\2\2W\3\2\2\2\2Y\3\2\2\2\2[\3\2\2\2\2]\3\2"+
+		"\2\2\2_\3\2\2\2\2a\3\2\2\2\2c\3\2\2\2\2e\3\2\2\2\2g\3\2\2\2\2i\3\2\2\2"+
+		"\2k\3\2\2\2\2m\3\2\2\2\2o\3\2\2\2\2q\3\2\2\2\2s\3\2\2\2\3u\3\2\2\2\5|"+
+		"\3\2\2\2\7\u0084\3\2\2\2\t\u008e\3\2\2\2\13\u0095\3\2\2\2\r\u009e\3\2"+
 		"\2\2\17\u00a2\3\2\2\2\21\u00a7\3\2\2\2\23\u00b7\3\2\2\2\25\u00b9\3\2\2"+
 		"\2\27\u00be\3\2\2\2\31\u00c3\3\2\2\2\33\u00c9\3\2\2\2\35\u00d1\3\2\2\2"+
 		"\37\u00d7\3\2\2\2!\u00de\3\2\2\2#\u00e6\3\2\2\2%\u00ec\3\2\2\2\'\u00f1"+

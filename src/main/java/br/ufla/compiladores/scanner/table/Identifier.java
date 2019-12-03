@@ -3,13 +3,10 @@ package br.ufla.compiladores.scanner.table;
 public class Identifier {
 
 	private String name;
-	private IdentifierType type;
-
 	private Location location;
 
-	public Identifier(String name, IdentifierType type) {
+	public Identifier(String name) {
 		this.name = name;
-		this.type = type;
 	}
 
 	public void setLocale(Location location) {
@@ -20,9 +17,6 @@ public class Identifier {
 		return name;
 	}
 
-	public IdentifierType getTipo() {
-		return type;
-	}
 
 	public Location getLocalizacao() {
 		return location;
@@ -33,7 +27,6 @@ public class Identifier {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -50,8 +43,6 @@ public class Identifier {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
-			return false;
-		if (type != other.type)
 			return false;
 		return true;
 	}

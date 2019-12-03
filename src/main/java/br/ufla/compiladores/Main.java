@@ -23,7 +23,6 @@ public class Main {
 			}
 		}
 		SymbolTable table = new SymbolTable();
-		table.extractIdentifiers(tokens);
 		System.out.println(table);
 	}
 
