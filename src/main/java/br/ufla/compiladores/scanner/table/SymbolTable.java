@@ -32,6 +32,8 @@ public class SymbolTable {
 
 		return null;
 	}
+	
+	
 
 	public boolean contains(Address adress) {
 		return this.symbols.containsKey(adress);
