@@ -1,15 +1,15 @@
+package teste; 
+
 public class Teste {
-	private String 1nome;
-			
-	// int variavelDoComentario;
+	private String nome;
 	private int idade;
 	
-	public void metodo(String argumento1, int argumento2) {
+	public metodo void(String argumento1, int argumento2) {
 		int x = 10;
 	}
 	
 	public static void main(String[] args) {
-		innt[] numeros = new int[];
+		int[] numeros = new int[];
 		String nomezin = "Leonardo";
 		
 		if (nomezin == "Matheus") {
@@ -17,28 +17,3 @@ public class Teste {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

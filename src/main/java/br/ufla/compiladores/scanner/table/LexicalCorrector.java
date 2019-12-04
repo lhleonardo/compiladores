@@ -3,7 +3,7 @@ package br.ufla.compiladores.scanner.table;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.Token;
 
-import br.ufla.compiladores.scanner.Scanner;
+import br.ufla.compiladores.scanner.ScannerLexer;
 
 public class LexicalCorrector {
 
@@ -17,9 +17,9 @@ public class LexicalCorrector {
 		String copyT;
 		for (int i = 0; i < t.length(); i++) {
 			copyT = t.substring(0, i) + t.substring(i + 1, t.length());
-			Scanner scanner = new Scanner(CharStreams.fromString(copyT));
+			ScannerLexer scanner = new ScannerLexer(CharStreams.fromString(copyT));
 			Token newToken = scanner.getToken();
-			if (newToken != null && newToken.getType() != Scanner.NOT_IDENTIFIER) {
+			if (newToken != null && newToken.getType() != ScannerLexer.NOT_IDENTIFIER) {
 				valido = true;
 				break;
 			}
