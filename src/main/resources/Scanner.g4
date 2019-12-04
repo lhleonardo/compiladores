@@ -10,7 +10,7 @@ compilationUnit: packageDeclaration?
 				 
 packageDeclaration: PACKAGE qualifiedIdentifier END_STATEMENT;
 importDeclaration: IMPORT qualifiedIdentifier END_STATEMENT;
-typeDeclaration: modifiers? classDeclaration;
+typeDeclaration: modifiers classDeclaration;
 
 qualifiedIdentifier: IDENTIFIER ('.' IDENTIFIER)*;
 
@@ -20,14 +20,22 @@ modifiers: (PUBLIC
 			| STATIC 
 			| ABSTRACT)*;
 
-classDeclaration: CLASS IDENTIFIER (EXTENDS qualifiedIdentifier)? classBody;
+classDeclaration: CLASS IDENTIFIER classOptions? classBody;
 
-classBody: OPEN_BRACES (modifiers memberDeclaration)* CLOSE_BRACES; 
+classOptions: EXTENDS qualifiedIdentifier;
+
+classBody: OPEN_BRACES classMembers CLOSE_BRACES; 
+
+classMembers: (modifiers memberDeclaration)*;
 
 memberDeclaration: 
-				IDENTIFIER formalParameters block // construtor
-				| (VOID | type) IDENTIFIER formalParameters (block | END_STATEMENT) // método
-				| type variableDeclarators END_STATEMENT; // campo da classe
+				constructorDeclaration // construtor
+				| methodDeclaration // método
+				| fieldDeclaration; // campo da classe
+
+constructorDeclaration: IDENTIFIER formalParameters block;
+methodDeclaration: (VOID | type) IDENTIFIER formalParameters (block | END_STATEMENT);
+fieldDeclaration: type variableDeclarators END_STATEMENT;
 
 block: OPEN_BRACES 
 			(blockStatement)* 
