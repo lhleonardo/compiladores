@@ -6,32 +6,31 @@ grammar Scanner;
 
 compilationUnit: packageDeclaration? 
 				 importDeclaration* 
-				 typeDeclaration* 
-				 EOF;
+				 typeDeclaration* EOF;
 				 
-packageDeclaration: PACKAGE qualifiedIdentifier;
-importDeclaration: IMPORT qualifiedIdentifier;
-typeDeclaration: type;
+packageDeclaration: PACKAGE qualifiedIdentifier END_STATEMENT;
+importDeclaration: IMPORT qualifiedIdentifier END_STATEMENT;
+typeDeclaration: modifiers? classDeclaration;
 
 qualifiedIdentifier: IDENTIFIER ('.' IDENTIFIER)*;
 
-modifiers: PUBLIC 
+modifiers: (PUBLIC 
 			| PROTECTED 
 			| PRIVATE 
 			| STATIC 
-			| ABSTRACT;
+			| ABSTRACT)*;
 
 classDeclaration: CLASS IDENTIFIER (EXTENDS qualifiedIdentifier)? classBody;
 
-classBody: OPEN_BRACKETS (modifiers memberDeclaration)? CLOSE_BRACKETS; 
+classBody: OPEN_BRACES (modifiers memberDeclaration)* CLOSE_BRACES; 
 
 memberDeclaration: 
 				IDENTIFIER formalParameters block // construtor
-				| (VOID | type) IDENTIFIER (block | END_STATEMENT) // método
-				| type variableDeclarators; // campo da classe
+				| (VOID | type) IDENTIFIER formalParameters (block | END_STATEMENT) // método
+				| type variableDeclarators END_STATEMENT; // campo da classe
 
 block: OPEN_BRACES 
-			(blockStatement)? 
+			(blockStatement)* 
 	   CLOSE_BRACES;
 
 blockStatement: localVariableDeclarationStatement | statement;
@@ -44,17 +43,17 @@ statement:
 		| END_STATEMENT
 		| statementExpression END_STATEMENT;
 
-formalParameters: OPEN_PARENTHESIS(formalParameter(SEMICOLON formalParameter))?CLOSE_PARENTHESIS;
+formalParameters: OPEN_PARENTHESIS (formalParameter (SEMICOLON formalParameter)* )? CLOSE_PARENTHESIS;
 
 formalParameter: type IDENTIFIER;
 
 parExpression: OPEN_PARENTHESIS expression CLOSE_PARENTHESIS;
 
-localVariableDeclarationStatement: type variableDeclarators;
+localVariableDeclarationStatement: type variableDeclarators END_STATEMENT;
 
 variableDeclarators: variableDeclarator (SEMICOLON variableDeclarator)*;
 
-variableDeclarator: IDENTIFIER (variableInitializer)?;
+variableDeclarator: IDENTIFIER (ASSIGN variableInitializer)?;
 
 variableInitializer: arrayInitializer | expression;
 
@@ -66,7 +65,7 @@ type: referenceType | basicType;
 
 basicType: BOOLEAN | CHAR | INT;
 
-referenceType: basicType OPEN_BRACES CLOSE_BRACES (OPEN_BRACES CLOSE_BRACES)* | qualifiedIdentifier (OPEN_BRACES CLOSE_BRACES)*;
+referenceType: (basicType OPEN_BRACKETS CLOSE_BRACKETS (OPEN_BRACKETS CLOSE_BRACKETS)*) | (qualifiedIdentifier (OPEN_BRACKETS CLOSE_BRACKETS)*);
 
 statementExpression: expression;
 
@@ -74,24 +73,27 @@ expression: assigmentExpression;
 
 assigmentExpression: conditionalAndExpression ((ASSIGN | PLUS) assigmentExpression)?;
 
-conditionalAndExpression: equalityExpression (AND equalityExpression)?; 
+conditionalAndExpression: equalityExpression (AND equalityExpression)*; 
 
 equalityExpression: relationalExpression (EQUAL relationalExpression)*;
 
 relationalExpression: additiveExpression 
-				((GREATER_THAN | LESS_EQUAL) additiveExpression | INSTANCEOF referenceType)?;
+				(
+					((GREATER_THAN | LESS_EQUAL) additiveExpression) 
+					|(INSTANCEOF referenceType)
+				)?;
 
 additiveExpression: multiplicativeExpression ((ADD | SUB) multiplicativeExpression)*;
 
 multiplicativeExpression: unaryExpression (MULT unaryExpression)*;
 
-unaryExpression: INCREMENT unaryExpression
-				| SUB unaryExpression
+unaryExpression: (INCREMENT unaryExpression)
+				|(SUB unaryExpression)
 				| simpleUnaryExpression;
 				
-simpleUnaryExpression: NOT unaryExpression
-					| OPEN_PARENTHESIS basicType CLOSE_PARENTHESIS unaryExpression
-					| OPEN_PARENTHESIS referenceType CLOSE_PARENTHESIS simpleUnaryExpression
+simpleUnaryExpression: (NOT unaryExpression)
+					| (OPEN_PARENTHESIS basicType CLOSE_PARENTHESIS unaryExpression)
+					| (OPEN_PARENTHESIS referenceType CLOSE_PARENTHESIS simpleUnaryExpression)
 					| postfixExpression;
 
 postfixExpression: primary selector* DECREMENT*;
@@ -117,8 +119,8 @@ newArrayDeclarator: OPEN_BRACKETS expression CLOSE_BRACKETS
 					(OPEN_BRACKETS expression CLOSE_BRACKETS)*
 					(OPEN_BRACKETS CLOSE_BRACKETS)*;
 					
-literal: INT
-		| CHAR
+literal: INT_LITERAL
+		| CHAR_LITERAL
 		| STRING
 		| BOOLEAN_TRUE
 		| BOOLEAN_FALSE
