@@ -6,31 +6,31 @@ import java.nio.file.Path;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import br.ufla.compiladores.scanner.ScannerLexer;
 import br.ufla.compiladores.scanner.ScannerParser;
 import br.ufla.compiladores.scanner.exceptions.CustomExceptionHandler;
-import br.ufla.compiladores.scanner.listeners.ClassListener;
-import br.ufla.compiladores.scanner.listeners.CompilationUnitListener;
+import br.ufla.compiladores.scanner.listeners.CustomListener;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException, URISyntaxException {
 		ScannerLexer scanner = new ScannerLexer(
 				CharStreams.fromPath(Path.of(Main.class.getResource("Arquivo.jminus").toURI())));
+		scanner.removeErrorListeners();
+		scanner.addErrorListener(CustomExceptionHandler.getInstance());
+
 		CommonTokenStream tokenStream = new CommonTokenStream(scanner);
 		ScannerParser parser = new ScannerParser(tokenStream);
 
-		parser.addParseListener(new ClassListener());
-		parser.addParseListener(new CompilationUnitListener());
+		ParseTree tree = parser.compilationUnit();
 
-		scanner.removeErrorListeners();
-		parser.removeErrorListeners();
+		ParseTreeWalker walker = new ParseTreeWalker();
 
-		scanner.addErrorListener(CustomExceptionHandler.getInstance());
-		parser.addErrorListener(CustomExceptionHandler.getInstance());
-
-		parser.compilationUnit();
+		CustomListener listener = new CustomListener();
+		walker.walk(listener, tree);
 	}
 
 }
