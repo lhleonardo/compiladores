@@ -1,13 +1,13 @@
-package br.ufla.compiladores.scanner.table;
+package br.ufla.compiladores.grammar.table;
 
 import java.util.Random;
 
-public class Address {
+public class Endereco {
 	private int value;
 
 	private static Random generator = new Random();
 
-	public Address() {
+	public Endereco() {
 		this.value = generator.nextInt(500) * generator.nextInt(500);
 	}
 
@@ -31,7 +31,7 @@ public class Address {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Address other = (Address) obj;
+		Endereco other = (Endereco) obj;
 		if (value != other.value)
 			return false;
 		return true;

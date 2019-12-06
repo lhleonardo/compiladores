@@ -1,7 +1,7 @@
 grammar Scanner;
 
 @header {
-	package br.ufla.compiladores.scanner;
+	package br.ufla.compiladores.grammar;
 }
 
 compilationUnit: packageDeclaration? 
@@ -26,7 +26,9 @@ classOptions: EXTENDS qualifiedIdentifier;
 
 classBody: OPEN_BRACES classMembers CLOSE_BRACES; 
 
-classMembers: (modifiers memberDeclaration)*;
+classMembers: classMember*;
+
+classMember: modifiers memberDeclaration;
 
 memberDeclaration: 
 				constructorDeclaration // construtor
@@ -34,7 +36,9 @@ memberDeclaration:
 				| fieldDeclaration; // campo da classe
 
 constructorDeclaration: IDENTIFIER formalParameters block;
-methodDeclaration: (VOID | type) IDENTIFIER formalParameters (block | END_STATEMENT);
+methodDeclaration: returnMethod IDENTIFIER formalParameters (block | END_STATEMENT);
+returnMethod: VOID | type;
+
 fieldDeclaration: type variableDeclarators END_STATEMENT;
 
 block: OPEN_BRACES 

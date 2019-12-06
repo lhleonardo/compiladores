@@ -9,10 +9,11 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-import br.ufla.compiladores.scanner.ScannerLexer;
-import br.ufla.compiladores.scanner.ScannerParser;
-import br.ufla.compiladores.scanner.exceptions.CustomExceptionHandler;
-import br.ufla.compiladores.scanner.listeners.CustomListener;
+import br.ufla.compiladores.grammar.ScannerLexer;
+import br.ufla.compiladores.grammar.ScannerParser;
+import br.ufla.compiladores.grammar.exceptions.CustomExceptionHandler;
+import br.ufla.compiladores.grammar.listeners.CustomListener;
+import br.ufla.compiladores.grammar.table.TabelaSimbolos;
 
 public class Main {
 
@@ -29,8 +30,12 @@ public class Main {
 
 		ParseTreeWalker walker = new ParseTreeWalker();
 
-		CustomListener listener = new CustomListener();
+		TabelaSimbolos table = new TabelaSimbolos();
+		CustomListener listener = new CustomListener(table);
+
 		walker.walk(listener, tree);
+
+		System.out.println(table);
 	}
 
 }

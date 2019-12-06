@@ -1,13 +1,20 @@
 package teste; 
 
 public class Teste {
-	private String nome;
+	private String nome, sobrenome, sexo, nomePai, nomeMae;
 	private int idade;
+	
+	public Teste(int x, String y, double z) {
+	
+	}
 	
 	public void metodo(String argumento1, int argumento2) {
 		int x = 10;
 	}
 	
+	public void metodo(String a) {
+		int x = 10;
+	}
 	public static void main(String[] args) {
 		int[] numeros = new int[];
 		String nomezin = "Leonardo";
@@ -16,4 +23,8 @@ public class Teste {
 			nomezin = "Leonardo não é matheus";
 		}
 	}
+}
+
+public class Teste2 extends Teste {
+	public int X;
 }

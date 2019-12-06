@@ -1,4 +1,4 @@
-package br.ufla.compiladores.scanner.table;
+package br.ufla.compiladores.grammar.table;
 
 public class Location {
 

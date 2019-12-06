@@ -1,11 +1,13 @@
-package br.ufla.compiladores.scanner.table;
+package br.ufla.compiladores.models;
 
-public class Identifier {
+import br.ufla.compiladores.grammar.table.Location;
+
+public class Identificador {
 
 	private String name;
 	private Location location;
 
-	public Identifier(String name) {
+	public Identificador(String name) {
 		this.name = name;
 	}
 
@@ -16,7 +18,6 @@ public class Identifier {
 	public String getNome() {
 		return name;
 	}
-
 
 	public Location getLocalizacao() {
 		return location;
@@ -38,7 +39,7 @@ public class Identifier {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Identifier other = (Identifier) obj;
+		Identificador other = (Identificador) obj;
 		if (name == null) {
 			if (other.name != null)
 				return false;
